@@ -1,0 +1,192 @@
+// MoniaGauf — Stock Management Schema
+// Datasource: SQLite (dev). Switch to PostgreSQL by changing provider + DATABASE_URL.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Role values: ADMIN | MANAGER | EMPLOYEE | ACCOUNTANT (stored as String — SQLite has no enum support)
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  fullName  String
+  role      String   @default("EMPLOYEE") // ADMIN | MANAGER | EMPLOYEE | ACCOUNTANT
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  activities ActivityLog[]
+  productions Production[]
+  purchases  Purchase[]
+}
+
+model Supplier {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String?
+  email     String?
+  address   String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  materials RawMaterial[]
+  purchases Purchase[]
+}
+
+model RawMaterial {
+  id            Int       @id @default(autoincrement())
+  name          String
+  category      String    // farine, chocolat, sucre, huile, emballage, arome, autre
+  unit          String    @default("kg") // kg, L, unité
+  quantity      Float     @default(0)
+  minQuantity   Float     @default(0) // alerte stock faible
+  unitPrice     Float     @default(0)
+  expiryDate    DateTime?
+  supplierId    Int?
+  supplier      Supplier? @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  productionUsages ProductionMaterial[]
+  recipes          RecipeIngredient[]
+  purchaseItems    PurchaseItem[]
+}
+
+model FinishedProduct {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    String   // gaufrette_chocolat, gaufrette_vanille, gaufrette_citron, gaufrette_fraise
+  sku         String?  @unique
+  price       Float    @default(0)
+  quantity    Int      @default(0)
+  minQuantity Int      @default(0)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  productions Production[]
+  saleItems   SaleItem[]
+  recipe      RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id              Int   @id @default(autoincrement())
+  productId       Int
+  product         FinishedProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  materialId      Int
+  material        RawMaterial @relation(fields: [materialId], references: [id])
+  quantityPerUnit Float  // quantité de matière (dans son unité kg/L) consommée pour produire 1 unité du produit fini
+
+  @@unique([productId, materialId])
+}
+
+model Production {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  product     FinishedProduct @relation(fields: [productId], references: [id])
+  quantity    Int
+  status      String   @default("COMPLETED") // PLANNED | IN_PROGRESS | COMPLETED | CANCELLED
+  notes       String?
+  userId      Int?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+
+  materials   ProductionMaterial[]
+}
+
+model ProductionMaterial {
+  id           Int        @id @default(autoincrement())
+  productionId Int
+  production   Production @relation(fields: [productionId], references: [id], onDelete: Cascade)
+  materialId   Int
+  material     RawMaterial @relation(fields: [materialId], references: [id])
+  quantityUsed Float
+}
+
+model Customer {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phone       String?
+  email       String?
+  address     String?
+  rc          String?  // Registre de Commerce
+  nif         String?  // Numéro d'Identification Fiscale
+  siegeSocial String?  // Siège social (adresse de l'entreprise cliente)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sales Sale[]
+}
+
+model Sale {
+  id           Int      @id @default(autoincrement())
+  invoiceNo    String   @unique
+  customerId   Int?
+  customer     Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  total        Float    @default(0) // total TTC final (après TVA et remise)
+  tvaRate      Float    @default(0) // taux de TVA en pourcentage (ex: 19 pour 19%)
+  remiseHT     Float    @default(0) // remise sur le total HT
+  montantVerse Float    @default(0) // montant déjà versé par le client
+  status       String   @default("PAID") // PAID | PENDING | CANCELLED
+  notes        String?
+  createdAt    DateTime @default(now())
+
+  items        SaleItem[]
+}
+
+model SaleItem {
+  id        Int   @id @default(autoincrement())
+  saleId    Int
+  sale      Sale  @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId Int
+  product   FinishedProduct @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Float
+  subtotal  Float
+}
+
+model Purchase {
+  id          Int       @id @default(autoincrement())
+  invoiceNo   String    @unique
+  supplierId  Int?
+  supplier    Supplier? @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+  total       Float     @default(0) // total HT (somme des sous-totaux)
+  tvaRate     Float     @default(0) // taux de TVA en pourcentage
+  status      String    @default("PAID") // PAID | PENDING | CANCELLED
+  notes       String?
+  userId      Int?
+  user        User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
+
+  items       PurchaseItem[]
+}
+
+model PurchaseItem {
+  id         Int   @id @default(autoincrement())
+  purchaseId Int
+  purchase   Purchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
+  materialId Int
+  material   RawMaterial @relation(fields: [materialId], references: [id])
+  quantity   Float
+  unitPrice  Float
+  subtotal   Float
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String
+  entity    String?
+  entityId  Int?
+  details   String?
+  createdAt DateTime @default(now())
+}
