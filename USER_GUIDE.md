@@ -1,199 +1,246 @@
-# 📖 دليل استعمال MoniaGauf — Guide d'utilisation
+Guide d'utilisation MoniaGauf
 
-نظام تسيير المخزون والمبيعات — *Système de gestion de stock et ventes*
+Système de gestion de stock et de ventes
 
----
+🚀 1. Installation (une seule fois)
+Prérequis
+Un PC sous Windows 10 ou une version plus récente.
+Installer Node.js (version LTS) depuis le site officiel.
+Étapes d'installation
+Copier le dossier MoniaGauf dans :
+C:\MoniaGauf\
+Double-cliquer sur setup.bat.
+Attendre entre 3 et 5 minutes.
+Une icône MoniaGauf apparaît sur le bureau.
+🎯 2. Utilisation quotidienne
 
-## 🚀 1. التركيب — Installation (مرة وحدة فقط)
+Double-cliquer sur l’icône MoniaGauf du bureau.
 
-### الشروط — Prérequis
-1. PC Windows 10 ولا أحدث
-2. Node.js LTS من https://nodejs.org/ — ثبّتو بـ"Next, Next, Install"
+Une fenêtre noire (terminal) s’ouvre.
+Le navigateur s’ouvre automatiquement sur :
+http://localhost:4000
+Connexion
 
-### خطوات التركيب
-1. انسخ مجلد `MoniaGauf` كامل لـ`C:\MoniaGauf\`
-2. **Double-click** على `setup.bat`
-3. انتظر 3-5 دقائق
-4. ✅ Icon **MoniaGauf** يظهر على Desktop
+Email : messoudigauf@moniagauf.com
 
----
+Mot de passe : hafid2026
 
-## 🎯 2. التشغيل اليومي — Lancement quotidien
+Arrêt de l'application
 
-**Double-click** على Icon **MoniaGauf** على Desktop.
-- terminal أسود يفتح (لا تغلقه إلا في الإيقاف)
-- المتصفح يفتح وحده على `http://localhost:4000`
+Fermer simplement la fenêtre noire du terminal.
 
-### تسجيل الدخول — Login
-| | |
-|---|---|
-| **Email** | `messoudigauf@moniagauf.com` |
-| **Mot de passe** | `hafid2026` |
+📊 3. Modules du logiciel
+🏠 Tableau de bord
 
-### الإيقاف — Arrêt
-أغلق الـterminal الأسود (X في الزاوية).
+Affiche :
 
----
+Les statistiques principales
+Les alertes de stock faible
+Les activités récentes
+🌾 Matières premières
 
-## 📊 3. الصفحات والوظائف — Pages et fonctions
+Gestion des matières premières :
 
-### 🏠 Tableau de bord
-شاشة الترحيب — إحصائيات سريعة، تنبيهات stock faible، نشاط حديث.
+Farine de blé
+Sucre
+Graisse végétale
+Sel
+Cacao
+Arômes (Vanille, Fraise, Citron)
+Emballages
 
-### 🌾 Matières premières
-المواد الأولية (Pâte / Crème / Emballage):
-- Ammonium, Bicarbonate de sodium, Lécithine, Sel, Farine de blé
-- Graisse végétale, Sucre, Cacao, Arôme Fraise/Citron/Vanille
-- 4 Emballages cartons (Fraise/Citron/Vanille/Chocolat)
+Fonctionnalités :
 
-**أعمال:** زيد، عدّل، احذف، فلتر بالـcatégorie أو stock faible.
+Ajouter
+Modifier
+Supprimer
+Rechercher
+Filtrer les stocks faibles
+📦 Achats
 
-### 📦 Achats (مشتريات المواد الأولية)
-كي تشتري مواد من fournisseur:
-1. اضغط "**Nouveau bon d'achat**"
-2. اختار fournisseur (ولا "+ Nouveau" لتزيد جديد)
-3. زيد lignes: Matière + Quantité + Prix
-4. اختياري: TVA% + ☑️ "Mettre à jour le prix"
-5. اضغط "**Valider et générer PDF**"
+Permet d'enregistrer les achats de matières premières.
 
-✅ **الـstock يزيد تلقائياً**
-✅ **PDF "Bon de réception"** ينزل
-✅ زرين: **Sans TVA** و **TVA X%** للتحميل
+Procédure :
+Cliquer sur Nouveau bon d'achat.
+Sélectionner un fournisseur.
+Ajouter les articles achetés.
+Saisir la quantité et le prix.
+Valider.
+Résultat :
+Mise à jour automatique du stock.
+Génération d’un bon de réception PDF.
+Téléchargement possible avec ou sans TVA.
+🍪 Produits finis
 
-### 🍪 Produits finis
-المنتجات المصنوعة — 8 cartons:
-- Gaufrette Chocolat 40g (Carton 48u) — 1440 DA
-- Gaufrette Chocolat 150g (Carton 24u) — 2400 DA
-- نفس الشي للـVanille, Citron, Fraise
+Gestion des produits fabriqués :
 
-**ملاحظة:** الـstock تزيد عند **Production**، تنقص عند **Vente**.
+Gaufrette Chocolat 40 g
+Gaufrette Chocolat 150 g
+Gaufrette Vanille
+Gaufrette Citron
+Gaufrette Fraise
 
-### 🚚 Fournisseurs
-كرنه fournisseurs — Nom, Téléphone, Email *(optionnel)*, Adresse.
+Le stock augmente après la production et diminue après la vente.
 
-### 👤 Clients
-كرنه عملاء — مع **RC N°, NIF, Siège social** اللي يبانوا في الـPDF.
+🚚 Fournisseurs
 
-### 🛒 Ventes
-البيع للعملاء:
-1. اضغط "**Nouvelle vente**"
-2. اختار client (ولا "+ Nouveau client")
-3. زيد منتجات + cartons + prix
-4. **TVA / Remise / Montant versé** → الـrécap لايف يحسب TTC + Reste à payer
-5. اضغط "**Valider et générer PDF**"
+Gestion des fournisseurs :
 
-✅ **الـstock تاع المنتجات ينقص تلقائياً**
-✅ زرين تحميل: **BL** (Bon de Livraison) و **Facture** (مفصّلة)
-✅ زر ✏️ **Modifier** — تعدّل البيع بدون حذف، الـstock يحدّث وحده
+Nom
+Téléphone
+Email
+Adresse
+👤 Clients
 
-### 📜 Historique
-كل المنتجات المبيوعة (item by item):
-- Filtres: تاريخ، produit، client، statut
-- Top 5 produits vendus
-- Export CSV
-- زر تحميل PDF لكل bon
+Gestion des clients :
 
-### 🏭 Production
-صنع المنتجات:
-1. اضغط "**Nouvel ordre**"
-2. اختار produit + cartons à produire
-3. النظام يعرض **preview** للمواد المطلوبة
-4. اضغط "**Créer l'ordre**" → status = **En attente**
-5. عند الإنتاج الفعلي، اضغط 🟢 **Complétée**:
-   - المواد الأولية تنقص حسب الـrecette
-   - المنتج النهائي يزيد في stock
-6. ولا 🔴 **Non complétée** (إلغاء بدون تأثير)
+Nom
+Adresse
+RC
+NIF
+Siège social
 
-### 📖 Recettes (BOM)
-الوصفات — ما تستهلك كل carton من المواد الأولية:
-- Carton 40g: 714g farine + 238g graisse + 209g sucre + ... + arôme/cacao
-- Carton 150g: 1316g farine + 439g graisse + ... + arôme/cacao
+Ces informations sont utilisées sur les factures et les bons de livraison.
 
----
+🛒 Ventes
 
-## 💾 4. Backup الاحتياطي — مهم جداً!
+Permet d'enregistrer les ventes.
 
-كل البيانات (clients, ventes, achats, productions, stock, factures) في **ملف واحد**:
+Procédure :
+Cliquer sur Nouvelle vente.
+Sélectionner un client.
+Ajouter les produits vendus.
+Saisir les quantités.
+Indiquer la TVA, la remise et le montant payé.
+Valider.
+Résultat :
+Déduction automatique du stock.
+Génération du Bon de Livraison (BL).
+Génération de la Facture PDF.
+Possibilité de modifier une vente déjà enregistrée.
+📜 Historique
 
-```
+Permet de consulter :
+
+Toutes les ventes réalisées
+Les produits vendus
+Les clients
+Les documents PDF générés
+
+Fonctions supplémentaires :
+
+Recherche par date
+Recherche par client
+Recherche par produit
+Export CSV
+Top 5 des produits les plus vendus
+🏭 Production
+
+Permet de fabriquer les produits finis à partir des matières premières.
+
+Procédure :
+Cliquer sur Nouvel ordre de production.
+Choisir le produit à fabriquer.
+Indiquer le nombre de cartons.
+Vérifier les matières nécessaires.
+Créer l’ordre.
+Statuts possibles
+
+Complétée :
+
+Les matières premières sont déduites du stock.
+Les produits finis sont ajoutés au stock.
+
+Non complétée :
+
+L’ordre est annulé sans modification du stock.
+📖 Recettes (BOM)
+
+Définissent les quantités de matières premières nécessaires à la fabrication d’un carton.
+
+Exemple :
+
+Farine : 714 g
+Graisse : 238 g
+Sucre : 209 g
+Arôme ou cacao selon le produit
+
+Les recettes sont utilisées automatiquement lors de la production.
+
+💾 4. Sauvegarde des données
+
+Toutes les données sont enregistrées dans :
+
 C:\MoniaGauf\backend\prisma\dev.db
-```
+Sauvegarde recommandée
 
-### 🔁 Backup أسبوعي (موصى به)
-1. أوقف التطبيق
-2. انسخ الملف على:
-   - 📁 USB
-   - ☁️ Google Drive / OneDrive
-   - 💿 قرص خارجي
-3. أعد تشغيل التطبيق
+Chaque semaine :
 
-### 🔄 استرجاع backup
-1. أوقف التطبيق
-2. عوّض `dev.db` بنسختك المحفوظة
-3. شعّل التطبيق
+Fermer l’application.
+Copier le fichier dev.db.
+Le sauvegarder sur :
+Une clé USB
+Google Drive
+OneDrive
+Un disque externe
+Restauration
+Fermer l’application.
+Remplacer le fichier dev.db par la sauvegarde.
+Relancer MoniaGauf.
+🆘 5. Problèmes courants
+Le port 4000 est déjà utilisé
 
----
+Une autre instance du logiciel est déjà ouverte.
 
-## 🆘 5. مشاكل شائعة — Problèmes courants
+Solution :
+Fermer les autres fenêtres du terminal ou redémarrer l’ordinateur.
 
-### "Le port 4000 est déjà utilisé"
-نسخة أخرى من التطبيق شغّالة. أغلق كل terminals السوداء أو أعد تشغيل PC.
+Le navigateur ne s’ouvre pas
 
-### المتصفح ما يفتحش وحده
-افتحو يدوياً واكتب: `http://localhost:4000`
+Ouvrir manuellement :
 
-### "Stock insuffisant"
-- شوف صفحة **Produits finis** ولا **Matières premières** للـstock الحقيقي
-- إذا كافي بصح يقول insuffisant → اعمل **Production** أولاً
-- إذا ناقص فعلاً → اعمل **Achat** أولاً
+http://localhost:4000
+Stock insuffisant
 
-### نسيت Mot de passe
-اتصل بالمطوّر — يحتاج script لإعادة تعيينو.
+Vérifier le stock disponible dans :
 
-### الـicon ما يخدمش
-**Right-click** على Icon → **Propriétés** → تأكد المسار:
-- Cible: `C:\MoniaGauf\start.bat`
-- Démarrer dans: `C:\MoniaGauf`
+Matières premières
+Produits finis
 
----
+Effectuer un achat ou une production si nécessaire.
 
-## 🎨 6. تخصيص — Personnalisation
+Mot de passe oublié
 
-### معلومات الشركة في الـPDF
-عدّل ملف:
-```
+Contacter le développeur pour réinitialiser le mot de passe.
+
+L’icône ne fonctionne pas
+
+Vérifier les propriétés du raccourci :
+
+Cible :
+
+C:\MoniaGauf\start.bat
+
+Démarrer dans :
+
+C:\MoniaGauf
+🎨 6. Personnalisation
+
+Les informations de l’entreprise affichées sur les PDF peuvent être modifiées dans :
+
 C:\MoniaGauf\frontend\src\lib\company.js
-```
 
-```js
-export const COMPANY = {
-  name:        'MoniaGauf',
-  tagline:     'BISCUITERIE, PÂTISSERIE...',
-  addressLine1:'TAKERBOUST AGHBALOU BOUIRA',
-  addressLine2:'10007 AGHBALOU',
-  phone:       '0795110429',
-  rc:          'RC N° : 10/100 1467848A20',
-  nif:         'NIF : 197062700468164',
-  ai:          'ART N° : 10272270861',
-  // ...
-};
-```
+Après modification :
 
-ثم أعد بناء الـfrontend:
-```cmd
 cd C:\MoniaGauf\frontend
 npm run build
-```
 
----
+pour reconstruire l’interface.
 
-## 📞 الدعم — Support
+📞 Support
 
-في حالة أي مشكل، اتصل بالمطوّر مع:
-- 📸 لقطة شاشة للخطأ
-- 📝 شرح ما كنت تدير
-- 📂 إذا أمكن، نسخة من `dev.db`
+En cas de problème, fournir au développeur :
 
----
-
-**MoniaGauf** © 2026 — *BISCUITERIE, PÂTISSERIE ET PRODUIT DE RÉGIME*
+Une capture d’écran de l’erreur.
+Une description du problème.
+Une copie du fichier dev.db si nécessaire.
