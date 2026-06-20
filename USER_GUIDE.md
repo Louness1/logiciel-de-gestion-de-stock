@@ -21,9 +21,9 @@ Le navigateur s’ouvre automatiquement sur :
 http://localhost:4000
 Connexion
 
-Email : messoudigauf@moniagauf.com
+Email : xxxxxxxxx@moniagauf.com
 
-Mot de passe : hafid2026
+Mot de passe : xxxxxx
 
 Arrêt de l'application
 
