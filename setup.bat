@@ -72,7 +72,7 @@ echo Raccourci "MoniaGauf" cree sur le Bureau.
 echo Double-cliquez dessus pour lancer l'application.
 echo.
 echo Login:
-echo    Email     : messoudigauf@moniagauf.com
-echo    Mot passe : hafid2026
+echo    Email     : xxxxxxxxxxf@moniagauf.com
+echo    Mot passe : xxxxxxxx
 echo.
 pause
