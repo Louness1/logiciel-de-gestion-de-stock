@@ -40,8 +40,8 @@ Collez le dossier `MoniaGauf` à la racine du disque, par exemple : `C:\MoniaGau
 ### Se connecter
 | Champ | Valeur |
 |---|---|
-| Email | `messoudigauf@moniagauf.com` |
-| Mot de passe | `hafid2026` |
+| Email | `xxxxxxxxxxf@moniagauf.com` |
+| Mot de passe | `XXXXXX` |
 
 ### Arrêter l'application
 - **Fermez la fenêtre noire** (cmd) — le serveur s'arrête
